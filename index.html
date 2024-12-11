@@ -76,6 +76,15 @@
             margin-top: 30px;
         }
 
+        /* Animasi untuk "I Love You So Much" */
+        .final-message {
+            font-size: 2em;
+            color: #ff6b6b;
+            text-align: center;
+            margin: 20px 0;
+            animation: text-glow 2s infinite;
+        }
+
         @keyframes beat {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.2); }
@@ -170,6 +179,15 @@
         <img src="673f42c2-f849-44b9-82c6-68983aab7c56.jpg" alt="Special Photo">
     </div>
 
+    <!-- Halaman Terakhir dengan Pesan Cinta -->
+    <div id="finalPage" class="container hidden">
+        <h1 class="final-message">I Love You So Much</h1>
+        <p class="final-message">You mean the world to me. I am forever yours. ❤️</p>
+        <div class="heart">&#10084;</div>
+        <img src="IMG_5734.jpg" alt="Special Moment">
+        <div class="click-to-start" id="restartButton">Click here to start again</div>
+    </div>
+
     <audio id="audio" loop>
         <source src="yung kai   blue  Official Audio    YouTube.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
@@ -198,6 +216,10 @@
             pages[currentPage].classList.add('hidden');
             currentPage = (currentPage + 1) % pages.length;
             pages[currentPage].classList.remove('hidden');
+            // Jika mencapai halaman terakhir, tampilkan halaman restart
+            if (currentPage === pages.length - 1) {
+                document.getElementById('finalPage').classList.remove('hidden');
+            }
         }
 
         setInterval(showNextPage, 5000); // Change page every 5 seconds
@@ -223,6 +245,13 @@
         };
 
         setInterval(createParticle, 300);
+
+        // Tombol restart untuk memulai ulang pengalaman dari awal
+        document.getElementById('restartButton').addEventListener('click', function() {
+            document.getElementById('finalPage').classList.add('hidden');
+            document.getElementById('startPage').classList.remove('hidden');
+            currentPage = 0;
+        });
     </script>
 </body>
 </html>
