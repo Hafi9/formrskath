@@ -120,7 +120,8 @@
     </style>
 </head>
 <body>
-    <audio autoplay loop>
+    <!-- Menambahkan audio dengan autoplay dan loop, serta memanfaatkan JavaScript untuk memastikan audio berjalan -->
+    <audio id="audio" loop>
         <source src="yung kai   blue  Official Audio    YouTube.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
@@ -148,6 +149,15 @@
     </div>
 
     <script>
+        // Memastikan audio dapat diputar otomatis dengan JavaScript
+        window.onload = function() {
+            var audio = document.getElementById('audio');
+            audio.muted = false; // Pastikan audio tidak dimute
+            audio.play().catch(function(error) {
+                console.log("Error playing audio:", error); // Menangani kesalahan jika ada
+            });
+        };
+
         const pages = document.querySelectorAll('.container');
         let currentPage = 0;
 
