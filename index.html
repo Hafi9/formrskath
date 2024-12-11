@@ -213,16 +213,14 @@
         let currentPage = 0;
 
         function showNextPage() {
-            pages[currentPage].classList.add('hidden');
-            currentPage = (currentPage + 1) % pages.length;
-            pages[currentPage].classList.remove('hidden');
-            // Jika mencapai halaman terakhir, tampilkan halaman restart
-            if (currentPage === pages.length - 1) {
-                document.getElementById('finalPage').classList.remove('hidden');
+            if (currentPage < pages.length - 1) {
+                pages[currentPage].classList.add('hidden');
+                currentPage = (currentPage + 1) % pages.length;
+                pages[currentPage].classList.remove('hidden');
             }
         }
 
-        setInterval(showNextPage, 5000); // Change page every 5 seconds
+        setInterval(showNextPage, 5000); // Change page every 5 seconds (except for the last page)
 
         // Particle effect
         const createParticle = () => {
