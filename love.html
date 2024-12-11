@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Someone Special</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #ff9a9e, #fad0c4);
+            color: #333;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            transition: opacity 1s;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        p {
+            font-size: 1.5em;
+            margin: 10px 0;
+            text-align: center;
+        }
+        .heart {
+            font-size: 4em;
+            color: #ff6b6b;
+            margin: 20px 0;
+            animation: beat 1s infinite;
+        }
+        img {
+            max-width: 100%;
+            max-height: 60vh;
+            margin-top: 20px;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        @keyframes beat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        @keyframes text-glow {
+            0% { text-shadow: 0 0 10px rgba(255, 105, 135, 0.8); }
+            50% { text-shadow: 0 0 20px rgba(255, 105, 135, 1); }
+            100% { text-shadow: 0 0 10px rgba(255, 105, 135, 0.8); }
+        }
+        @keyframes particle {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-200px) scale(0.5); opacity: 0; }
+        }
+        h1, p {
+            animation: text-glow 2s infinite;
+        }
+        .particle {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.7);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            animation: particle 4s infinite ease-out;
+        }
+        @media (max-width: 1024px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            p {
+                font-size: 1.2em;
+            }
+            .heart {
+                font-size: 3em;
+            }
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            p {
+                font-size: 1em;
+            }
+            .heart {
+                font-size: 2.5em;
+            }
+        }
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5em;
+            }
+            p {
+                font-size: 0.9em;
+            }
+            .heart {
+                font-size: 2em;
+            }
+            img {
+                max-width: 70%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <audio autoplay loop>
+        <source src="yung kai   blue  Official Audio    YouTube.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div id="page1" class="container">
+        <h1>For You, My Dearest</h1>
+        <p>You make my world brighter, my heart warmer, and my days happier.</p>
+        <div class="heart">&#10084;</div>
+        <img src="IMG_5708.jpg" alt="Your Photo">
+    </div>
+
+    <div id="page2" class="container hidden">
+        <h1>Forgive Me</h1>
+        <p>I know I've made mistakes in the past, and for those, I deeply apologize.</p>
+        <p>You mean everything to me, and I hope this small gesture shows how much I care for you.</p>
+        <img src="IMG_5786.jpg" alt="Another Photo">
+    </div>
+
+    <div id="page3" class="container hidden">
+        <h1>You Are My Everything</h1>
+        <p>You are my greatest treasure, my joy, and my inspiration.</p>
+        <p>Every day with you is a gift, and I am endlessly grateful for you.</p>
+        <div class="heart">&#10084;</div>
+        <img src="673f42c2-f849-44b9-82c6-68983aab7c56.jpg" alt="Special Photo">
+    </div>
+
+    <script>
+        const pages = document.querySelectorAll('.container');
+        let currentPage = 0;
+
+        function showNextPage() {
+            pages[currentPage].classList.add('hidden');
+            currentPage = (currentPage + 1) % pages.length;
+            pages[currentPage].classList.remove('hidden');
+        }
+
+        setInterval(showNextPage, 5000); // Change page every 5 seconds
+
+        // Particle effect
+        const createParticle = () => {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            document.body.appendChild(particle);
+            
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight + window.innerHeight / 2;
+            const size = Math.random() * 10 + 5;
+            
+            particle.style.left = `${x}px`;
+            particle.style.top = `${y}px`;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+
+            particle.addEventListener('animationend', () => {
+                particle.remove();
+            });
+        };
+
+        setInterval(createParticle, 300);
+    </script>
+</body>
+</html>
