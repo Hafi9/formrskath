@@ -57,6 +57,25 @@
             border-radius: 50%;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
+
+        /* Animasi untuk button "Click to Start" */
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            25% { transform: translateY(-10px); }
+            50% { transform: translateY(0); }
+            75% { transform: translateY(-5px); }
+            100% { transform: translateY(0); }
+        }
+
+        .click-to-start {
+            font-size: 2em;
+            color: #ff6b6b;
+            text-decoration: underline;
+            cursor: pointer;
+            animation: bounce 1s infinite;
+            margin-top: 30px;
+        }
+
         @keyframes beat {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.2); }
@@ -120,13 +139,16 @@
     </style>
 </head>
 <body>
-    <!-- Menambahkan audio dengan autoplay dan loop, namun tidak diputar otomatis -->
-    <audio id="audio" loop>
-        <source src="yung kai   blue  Official Audio    YouTube.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
+    <!-- Menambahkan halaman khusus untuk "Click to Start" -->
+    <div id="startPage" class="container">
+        <h1>Hey You...</h1>
+        <p>Something special awaits you!</p>
+        <p>Click below to unlock a secret message just for you.</p>
+        <div class="click-to-start">Tap here to reveal the magic</div>
+    </div>
 
-    <div id="page1" class="container">
+    <!-- Halaman utama -->
+    <div id="page1" class="container hidden">
         <h1>For You, My Dearest</h1>
         <p>You make my world brighter, my heart warmer, and my days happier.</p>
         <div class="heart">&#10084;</div>
@@ -148,14 +170,25 @@
         <img src="673f42c2-f849-44b9-82c6-68983aab7c56.jpg" alt="Special Photo">
     </div>
 
+    <audio id="audio" loop>
+        <source src="yung kai   blue  Official Audio    YouTube.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
     <script>
         // Menunggu interaksi pengguna untuk memulai audio
-        document.body.addEventListener('click', function() {
+        document.querySelector('.click-to-start').addEventListener('click', function() {
             var audio = document.getElementById('audio');
             audio.muted = false; // Pastikan audio tidak dimute
             audio.play().catch(function(error) {
                 console.log("Error playing audio:", error); // Menangani kesalahan jika ada
             });
+
+            // Sembunyikan halaman awal setelah klik
+            document.getElementById('startPage').classList.add('hidden');
+
+            // Tampilkan halaman pertama setelah interaksi
+            document.getElementById('page1').classList.remove('hidden');
         });
 
         const pages = document.querySelectorAll('.container');
